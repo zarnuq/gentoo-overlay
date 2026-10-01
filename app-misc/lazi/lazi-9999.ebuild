@@ -23,6 +23,13 @@ src_unpack() {
 	cargo_live_src_unpack
 }
 
+src_install() {
+	cargo_src_install
+	# lazi has no built-in defaults; this is the config it falls back to.
+	insinto /etc/xdg/lazi
+	doins config.ron
+}
+
 pkg_postinst() {
 	optfeature "copying paths to the clipboard" gui-apps/wl-clipboard
 	optfeature "the fzf jump picker" app-shells/fzf

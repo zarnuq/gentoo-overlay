@@ -8,7 +8,7 @@ RUST_MIN_VER="1.88.0"
 
 inherit cargo git-r3 optfeature
 
-DESCRIPTION="Terminal workspace: the lazi file manager and a git repo dashboard"
+DESCRIPTION="Terminal workspace: a yazi-style file manager, git repo status and search"
 HOMEPAGE="https://github.com/zarnuq/lazi"
 EGIT_REPO_URI="https://github.com/zarnuq/lazi.git"
 
@@ -24,17 +24,16 @@ src_unpack() {
 }
 
 src_install() {
-	cargo_src_install --path crates/shop
-	# shop has no built-in defaults; this is the config it falls back to.
-	insinto /etc/xdg/shop
-	doins crates/shop/host.ron
-	# The file browser tab's settings; lazi used to install these itself.
+	cargo_src_install --path crates/lazi
+	# lazi has no built-in defaults; these are the configs it falls back to: its own, and the
+	# file browser tab's.
 	insinto /etc/xdg/lazi
-	doins crates/lazi/config.ron
+	doins crates/lazi/config.ron crates/files/files.ron
 }
 
 pkg_postinst() {
 	optfeature "copying paths to the clipboard" gui-apps/wl-clipboard
 	optfeature "the fzf jump picker" app-shells/fzf
 	optfeature "trashing across filesystems" dev-libs/glib
+	optfeature "the Ctrl+p search box" "sys-apps/fd sys-apps/ripgrep"
 }

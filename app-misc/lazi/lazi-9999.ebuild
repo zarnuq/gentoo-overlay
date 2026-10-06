@@ -24,10 +24,10 @@ src_unpack() {
 }
 
 src_install() {
-	cargo_src_install
+	cargo_src_install --path crates/lazi
 	# lazi has no built-in defaults; this is the config it falls back to.
 	insinto /etc/xdg/lazi
-	doins config.ron
+	doins crates/lazi/config.ron
 }
 
 pkg_postinst() {

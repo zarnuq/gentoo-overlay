@@ -14,12 +14,13 @@ EGIT_REPO_URI="https://github.com/zarnuq/reach.git"
 LICENSE="GPL-3.0-or-later"
 SLOT="0"
 
+# pixman/fcft went with the built-in status bar: reach draws no text or images
+# of its own any more (borders are single-pixel buffers), and a panel that wants
+# to draw one is a separate layer-shell client reading the state socket.
 RDEPEND="
 	>=gui-wm/river-0.4.5
 	dev-libs/wayland
-	x11-libs/pixman
 	x11-libs/libxkbcommon
-	media-libs/fcft
 "
 DEPEND="${RDEPEND}"
 

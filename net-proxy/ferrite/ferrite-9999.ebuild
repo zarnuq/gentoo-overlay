@@ -6,7 +6,7 @@ EAPI=8
 # edition 2024
 RUST_MIN_VER="1.85.0"
 
-inherit cargo git-r3
+inherit cargo desktop git-r3 xdg
 
 DESCRIPTION="Burp Suite-style intercepting proxy for web app pentesting, with an egui UI"
 HOMEPAGE="https://github.com/zarnuq/ferrite"
@@ -28,4 +28,9 @@ RDEPEND="
 src_unpack() {
 	git-r3_src_unpack
 	cargo_live_src_unpack
+}
+
+src_install() {
+	cargo_src_install
+	domenu assets/ferrite.desktop
 }

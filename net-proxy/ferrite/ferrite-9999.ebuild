@@ -33,4 +33,5 @@ src_unpack() {
 src_install() {
 	cargo_src_install
 	domenu assets/ferrite.desktop
+	doicon -s scalable assets/ferrite.svg
 }

@@ -6,7 +6,7 @@ EAPI=8
 # egui/eframe 0.36 set rust-version = "1.95"
 RUST_MIN_VER="1.95.0"
 
-inherit cargo git-r3
+inherit cargo desktop git-r3 xdg
 
 DESCRIPTION="Graphical dependency-graph browser for Gentoo Portage"
 HOMEPAGE="https://github.com/zarnuq/gendtree"
@@ -36,4 +36,9 @@ RDEPEND="
 src_unpack() {
 	git-r3_src_unpack
 	cargo_live_src_unpack
+}
+
+src_install() {
+	cargo_src_install
+	domenu "${FILESDIR}"/gendtree.desktop
 }

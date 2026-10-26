@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=gendtree
+GenericName=Dependency Browser
+Comment=Browse the Gentoo Portage dependency graph
+Exec=gendtree
+Icon=package-x-generic
+Terminal=false
+Categories=System;PackageManager;
+StartupWMClass=gendtree
